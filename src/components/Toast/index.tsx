@@ -3,8 +3,8 @@ import * as React from 'react';
 function Toast() {
   return (
     <div>
-      <input />
-      <button aria-label="submit" type="submit">Кнопка пол инпутом</button>
+      <h1>имя тоста </h1>
+      <button>закрыть тост</button>
     </div>
   );
 }
