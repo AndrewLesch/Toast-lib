@@ -1,3 +1,3 @@
-import Toast from './components/Toast';
+import ToastItem from './components/ToastItem';
 
-export default Toast;
+export default ToastItem;

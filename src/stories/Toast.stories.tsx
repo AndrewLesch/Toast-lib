@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-
-import Toast from '..';
+import { ToastContainer } from '../components/ToastContainer';
 
 const stories = storiesOf('app test', module);
-stories.add('app', () => (<Toast />));
+stories.add('app', () => (<ToastContainer />));

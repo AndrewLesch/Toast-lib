@@ -20,6 +20,9 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
+        "@typescript-eslint/no-unused-vars": ["error"],
+        "no-shadow": "off",
+        'react/jsx-props-no-spreading': 'off',
         'react/jsx-filename-extension': [2, { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],
         "import/no-extraneous-dependencies": [
             "error",
