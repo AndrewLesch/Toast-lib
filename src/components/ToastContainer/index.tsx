@@ -1,54 +1,43 @@
-import React, {
-  useEffect,
-  useState,
-  useRef,
-  useImperativeHandle,
-} from 'react';
+import React from 'react';
 import { createPortal } from 'react-dom';
-import Singleton, { RefType } from '../../class';
+
+import useToast from '../../hooks/useToast';
 import { ToastType } from '../../types';
+import ErrorBoundary from '../ErrorBoundary';
 import ToastItem from '../ToastItem';
+
 import ToastLayout from './styled';
 
-export const singleton: Singleton = Singleton.getInstance();
-
-export const ToastContainer = () => {
-  const [toasts, setToasts] = useState<ToastType[]>([]);
-  const ref = useRef<RefType | null>(null);
-
-  useImperativeHandle(ref, (): RefType => ({
-    addToast: (newToast: ToastType) => {
-      if (toasts.length >= 3) {
-        const newToasts = [...toasts];
-        newToasts.shift();
-        setToasts([...newToasts, newToast]);
-      } else {
-        // setTimeout(() => {
-        //   setToasts((prevToasts) => {
-        //     const index = prevToasts.findIndex((toast : ToastType) => newToast.id === toast.id);
-        //     prevToasts.splice(index, 1)
-        //     console.log(newToast.duration)
-        //     return [...prevToasts]
-        //   })
-      //  }, newToast.duration)
-        setToasts(() => [...toasts, newToast]);
-      }
-    },
-    deleteToast: (id: string) => {
-      const index = toasts.findIndex((toast : ToastType) => id === toast.id);
-      toasts.splice(index, 1);
-      setToasts([...toasts]);
-    },
-  }));
-
-  useEffect(() => {
-    singleton.toastsContainer = ref.current;
-  }, [toasts]);
+const ToastContainer = () => {
+  const toasts = useToast();
+  const amountToastsInPositions = {
+    topLeft: 0,
+    topRight: 0,
+    bottomLeft: 0,
+    bottomRight: 0,
+  };
 
   return createPortal(
-    <ToastLayout>
-      {toasts.map((toast: ToastType) => <ToastItem key={toast.id} {...toast} />)}
-    </ToastLayout>,
+    <ErrorBoundary>
+      <ToastLayout>
+        {toasts.map((toast: ToastType) => {
+          amountToastsInPositions[toast.position as keyof typeof amountToastsInPositions]++;
+          return (
+            <ToastItem
+              key={toast.id}
+              {...toast}
+              toastsInSamePosition={
+                amountToastsInPositions[
+                  toast.position as keyof typeof amountToastsInPositions
+                ]
+              }
+            />
+          );
+        })}
+      </ToastLayout>
+    </ErrorBoundary>,
     document.body,
   );
 };
+
+export default ToastContainer;

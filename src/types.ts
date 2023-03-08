@@ -1,4 +1,5 @@
 import React from 'react';
+import { Keyframes } from 'styled-components';
 
 export type ToastType = {
   title: string,
@@ -7,39 +8,32 @@ export type ToastType = {
   id: string,
   animation: string,
   color: string,
-  padding: string,
+  margin: string,
   duration: number,
   position: string,
+  toastsInSamePosition : number,
 }
 
 export type PositionsType = {
-  topLeft: {
-    left: string | number,
-    top: string | number,
-    bottom: string | number,
-    right: string | number,
+  topLeft: (tostsInSamePlace: number) => {
+    firstPosition: string;
+    secondPosition: string;
   },
-  topRight: {
-    left: string | number,
-    top: string | number,
-    bottom: string | number,
-    right: string | number,
+  topRight: (tostsInSamePlace: number) => {
+    firstPosition: string;
+    secondPosition: string;
   },
-  bottomLeft: {
-    left: string | number,
-    top: string | number,
-    bottom: string | number,
-    right: string | number,
+  bottomLeft: (tostsInSamePlace: number) => {
+    firstPosition: string;
+    secondPosition: string;
   },
-  bottomRight: {
-    left: string | number,
-    top: string | number,
-    bottom: string | number,
-    right: string | number,
+  bottomRight: (tostsInSamePlace: number) => {
+    firstPosition: string;
+    secondPosition: string;
   },
 }
 
-export type TypesType = {
+export type ToastTypesType = {
   info: {
     img: React.ReactNode,
     color: string
@@ -56,4 +50,28 @@ export type TypesType = {
     img: React.ReactNode,
     color: string
   },
+}
+
+export type AnimationsType = {
+  opacityAnimation: Keyframes,
+  widthAnimation: Keyframes,
+  heightAnimation: Keyframes,
+}
+
+export type OptionsType = {
+  value: string,
+  text: string,
+}
+
+export type ElementBodyType = {
+  position: {
+    firstPosition: string,
+    secondPosition: string,
+  };
+  margin: string;
+  type: {
+    color: string
+  };
+  duration: number;
+  animation: Keyframes;
 }

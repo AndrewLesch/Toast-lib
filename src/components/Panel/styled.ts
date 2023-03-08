@@ -7,7 +7,7 @@ export const PanelContainer: StyledComponent<'form', {}> = styled.form`
   margin-top: 100px;
   background-color: #ffffff;
   border-radius: 10px;
-  border: 1px solid grey;
+  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.86);
   padding: 10px;
 `;
 
@@ -55,7 +55,7 @@ export const PositionSelector = styled.select`
   border-radius: 8px;
 `;
 
-export const PaddingSelector = styled.select`
+export const MarginSelector = styled.select`
   width: 200px;
   height: 50px;
   background: #FFFFFF;

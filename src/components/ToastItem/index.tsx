@@ -1,31 +1,31 @@
 import * as React from 'react';
+
+import { animations, positions, types } from '../../constants';
 import { ToastType } from '../../types';
-import { positions, types } from '../../const';
-import { singleton } from '../ToastContainer';
+import { deleteToast } from '../../utils';
+
 import {
-  ToastElementLayout, DeleteButton,
-  ToastHeader, ToastTitle, ToastContentContainer,
+  DeleteButton,
+  ToastContentContainer,
   ToastDescription,
+  ToastElementLayout, ToastHeader, ToastTitle,
 } from './styled';
 
 function ToastItem(toast: ToastType) {
   const {
-    description, title, color, id, position, animation, padding, duration, type,
+    description, title, color, id, position,
+    animation, margin, duration, type, toastsInSamePosition,
   } = { ...toast };
-
-  const deleteToast = (id: string) => {
-    singleton.deleteToast(id);
-  };
 
   return (
     <ToastElementLayout
       draggable
       onDragEnd={() => deleteToast(id)}
-      position={positions[position as keyof typeof positions]}
+      position={positions[position as keyof typeof positions](toastsInSamePosition)}
       type={types[type as keyof typeof types]}
       duration={duration}
-      padding={padding}
-      animation={animation}
+      margin={margin}
+      animation={animations[animation as keyof typeof animations]}
       color={color}
     >
       <ToastHeader>

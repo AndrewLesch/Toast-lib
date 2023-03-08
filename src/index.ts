@@ -1,3 +1,4 @@
-import ToastItem from './components/ToastItem';
+import ToastContainer from './components/ToastContainer';
+import { addToast, deleteToast } from './utils';
 
-export default ToastItem;
+export { ToastContainer, addToast, deleteToast };

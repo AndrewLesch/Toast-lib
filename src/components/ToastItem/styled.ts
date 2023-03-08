@@ -1,58 +1,21 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
-const opacityAnimation = keyframes`
-  0% { opacity: 0 }
-  30% { opacity: 0.7 }
-  80% { opacity: 1; }
-  100% { opacity: 0; }
-`;
+import { ElementBodyType } from '../../types';
 
-const heightAnimation = keyframes`
-  0% { height: 0px }
-  40% { height: 150px }
-  80% { height: 150px}
-  100% { height:0px }
-`;
-
-const widthAnimation = keyframes`
-  0% { width: 0px }
-  40% { width: 500px }
-  80% {width: 500px}
-  100% { width: 0px }
-`;
-
-type ElementBodyType = {
-  position: {
-    left: string | number,
-    bottom: string | number,
-    top: string | number,
-    right: string | number,
-  };
-  padding: string;
-  type: {
-    color: string
-  };
-  duration: number;
-  animation: string;
-}
 export const ToastElementLayout = styled.div<ElementBodyType>`
   border-radius: 10px;
-  position: fixed;
   box-sizing: border-box;
+  position: fixed;
   width: 500px;
   height: 150px;
   color: white;
-  left: ${({ position }) => position.left}px;
-  right: ${({ position }) => position.right}px;
-  bottom: ${({ position }) => position.bottom}px;
-  top: ${({ position }) => position.top}px;
+  ${({ position }) => position.firstPosition};
+  ${({ position }) => position.secondPosition};
   background-color: ${({ type, color }) => (color !== 'default' ? color : type.color)};
-  animation: ${({ animation }) => (animation === 'opacityAnimation' ? opacityAnimation
-    : animation === 'heightAnimation' ? heightAnimation
-      : widthAnimation)}
+  animation: ${({ animation }) => (animation)}
     ${({ duration }) => duration / 1000 + 0.1}s;
-  margin: ${({ padding }) => padding}px;
+  margin: ${({ margin }) => margin}px;
 `;
 
 export const ToastHeader = styled.div`
@@ -67,7 +30,7 @@ export const ToastTitle = styled.h6`
   width: 320px;
   font-size: 23px;
   word-wrap: break-word;
-  overflow-x:hidden;
+  overflow-x: hidden;
   text-align: center;
   margin: 0;
   max-height: 40px;

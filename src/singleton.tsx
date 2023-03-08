@@ -6,7 +6,7 @@ export type RefType = {
 }
 
 class Singleton {
-  private static instance: Singleton ;
+  private static instance: Singleton;
 
   toastsContainer: RefType | null = null;
 
@@ -26,4 +26,5 @@ class Singleton {
     this.toastsContainer?.deleteToast(id);
   };
 }
-export default Singleton;
+
+export const singleton: Singleton = Singleton.getInstance();
