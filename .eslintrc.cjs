@@ -17,9 +17,28 @@ module.exports = {
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "simple-import-sort"
     ],
-    "rules": {
+    "rules": { 
+        "simple-import-sort/imports": [
+            "error",
+            {
+              "groups": [
+                ["^react", "^@?\\w"],
+                ["^(@|components)(/.*|$)"],
+                ["^\\u0000"],
+                ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+                ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+                ["^.+\\.?(css)$"]
+              ]
+            }
+          ],
+        "@typescript-eslint/no-unused-vars": ["error"],
+        "no-shadow": "off",
+        "no-plusplus": "off",
+        "no-use-before-define": "off",
+        'react/jsx-props-no-spreading': 'off',
         'react/jsx-filename-extension': [2, { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],
         "import/no-extraneous-dependencies": [
             "error",
@@ -37,7 +56,8 @@ module.exports = {
             {
                 "pattern": {
                     "jsx": "never",
-                    "tsx": "never"
+                    "tsx": "never",
+                    "ts": "never",
                 }
             }
         ]
@@ -46,7 +66,7 @@ module.exports = {
         "import/resolver": {
             "typescript": {
                 "alwaysTryTypes": true
-            }
+            },
         }
     }
 }
