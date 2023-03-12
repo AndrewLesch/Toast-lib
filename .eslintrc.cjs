@@ -20,7 +20,7 @@ module.exports = {
         "@typescript-eslint",
         "simple-import-sort"
     ],
-    "rules": {
+    "rules": { 
         "simple-import-sort/imports": [
             "error",
             {

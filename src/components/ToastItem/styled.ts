@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
-import { ElementBodyType } from '../../types';
+import { ToastItemType } from '../../types';
 
-export const ToastElementLayout = styled.div<ElementBodyType>`
+export const ToastElementLayout = styled.div<ToastItemType>`
   border-radius: 10px;
   box-sizing: border-box;
   position: fixed;
@@ -68,4 +68,8 @@ export const DeleteButton = styled.button`
   border: none;
   margin-right: 5px;
   font-size: 19px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;

@@ -33,18 +33,7 @@ function Panel() {
   const submitHandler = (event: SyntheticEvent) => {
     event?.preventDefault();
     addToast(toast);
-    setToast({
-      title: '',
-      description: '',
-      type: 'info',
-      id: uuidv4(),
-      animation: 'opacityAnimation',
-      color: 'default',
-      margin: '5',
-      duration: 3000,
-      position: 'topLeft',
-      toastsInSamePosition: 0,
-    });
+    setToast({...toast, id: uuidv4()})
   };
 
   const setToastValue = (toastProp: string) => (event: React.ChangeEvent<HTMLInputElement> |
@@ -57,20 +46,21 @@ function Panel() {
     <PanelContainer onSubmit={submitHandler}>
       <TitleItem>Set toast title</TitleItem>
       <TitleInput
+        data-testid="title"
         required
         value={toast.title}
-        maxLength={25}
         placeholder="Toast title"
         onChange={setToastValue('title')}
       />
       <DescriptionItem>Set toast description</DescriptionItem>
       <DescriptionInput
+        data-testid="description"
         value={toast.description}
-        maxLength={250}
         placeholder="Toast description"
         onChange={setToastValue('description')}
       />
       <ColorSelector
+        data-testid="color"
         value={toast.color}
         onChange={setToastValue('color')}
       >
@@ -81,6 +71,7 @@ function Panel() {
         ))}
       </ColorSelector>
       <TypeSelector
+        data-testid="type"
         value={toast.type}
         onChange={setToastValue('type')}
       >
@@ -91,6 +82,7 @@ function Panel() {
         ))}
       </TypeSelector>
       <PositionSelector
+        data-testid="position"
         value={toast.position}
         onChange={setToastValue('position')}
       >
@@ -101,6 +93,7 @@ function Panel() {
         ))}
       </PositionSelector>
       <MarginSelector
+        data-testid="margin"
         value={toast.margin}
         onChange={setToastValue('margin')}
       >
@@ -111,6 +104,7 @@ function Panel() {
         ))}
       </MarginSelector>
       <DurationSelector
+        data-testid="duration"
         value={toast.duration}
         onChange={setToastValue('duration')}
       >
@@ -121,6 +115,7 @@ function Panel() {
         ))}
       </DurationSelector>
       <AnimationSelector
+        data-testid="animation"
         value={toast.animation}
         onChange={setToastValue('animation')}
       >
@@ -130,7 +125,7 @@ function Panel() {
           </option>
         ))}
       </AnimationSelector>
-      <PanelButton type="submit">Show toast</PanelButton>
+      <PanelButton data-testid="submit" type="submit">Show toast</PanelButton>
       <ToastContainer />
     </PanelContainer>
   );

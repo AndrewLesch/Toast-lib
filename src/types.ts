@@ -54,8 +54,8 @@ export type ToastTypesType = {
 
 export type AnimationsType = {
   opacityAnimation: Keyframes,
-  widthAnimation: Keyframes,
   heightAnimation: Keyframes,
+  scaleAnimation: Keyframes,
 }
 
 export type OptionsType = {
@@ -63,7 +63,7 @@ export type OptionsType = {
   text: string,
 }
 
-export type ElementBodyType = {
+export type ToastItemType = {
   position: {
     firstPosition: string,
     secondPosition: string,
