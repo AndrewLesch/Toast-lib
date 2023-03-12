@@ -3,7 +3,7 @@ import { faCircleCheck, faCircleQuestion } from '@fortawesome/free-regular-svg-i
 import { faBug, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastImage } from './components/ToastItem/styled';
-import { heightAnimation, opacityAnimation, widthAnimation } from './animations';
+import { heightAnimation, opacityAnimation, scaleAnimation } from './animations';
 import {
   AnimationsType, PositionsType, ToastTypesType,
 } from './types';
@@ -29,25 +29,25 @@ export const positions: PositionsType = {
 
 export const types : ToastTypesType = {
   info: {
-    img: <ToastImage icon={faCircleQuestion} />,
+    img: <ToastImage data-testid="toast-icon-info" icon={faCircleQuestion} />,
     color: '#9A41D2',
   },
   warning: {
-    img: <ToastImage icon={faTriangleExclamation} />,
+    img: <ToastImage data-testid="toast-icon-warning" icon={faTriangleExclamation} />,
     color: '#F4E04A',
   },
   success: {
-    img: <ToastImage icon={faCircleCheck} />,
+    img: <ToastImage data-testid="toast-icon-success" icon={faCircleCheck} />,
     color: '#37E29B',
   },
   error: {
-    img: <ToastImage icon={faBug} />,
+    img: <ToastImage data-testid="toast-icon-error" icon={faBug} />,
     color: '#E25736',
   },
 };
 
 export const animations: AnimationsType = {
   opacityAnimation,
-  widthAnimation,
   heightAnimation,
+  scaleAnimation,
 };

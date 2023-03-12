@@ -38,7 +38,7 @@ const useToast = () => {
     singleton.toastsContainer = ref.current;
   }, [toasts]);
 
-  return toasts;
+  return { toasts };
 };
 
 export default useToast;

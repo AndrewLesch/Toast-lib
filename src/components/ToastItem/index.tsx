@@ -11,14 +11,15 @@ import {
   ToastElementLayout, ToastHeader, ToastTitle,
 } from './styled';
 
-function ToastItem(toast: ToastType) {
-  const {
-    description, title, color, id, position,
-    animation, margin, duration, type, toastsInSamePosition,
-  } = { ...toast };
-
+function ToastItem({
+  id, title, position = 'topLeft', type = 'info',
+  color, description, duration,
+  toastsInSamePosition,
+  animation = 'opacityAnimation', margin,
+} :ToastType) {
   return (
     <ToastElementLayout
+      data-testid="toast"
       draggable
       onDragEnd={() => deleteToast(id)}
       position={positions[position as keyof typeof positions](toastsInSamePosition)}
@@ -29,12 +30,16 @@ function ToastItem(toast: ToastType) {
       color={color}
     >
       <ToastHeader>
-        <ToastTitle>{title}</ToastTitle>
+        <ToastTitle data-testid="toast-title">
+          {title.length > 20 ? title.slice(0, 17).concat('...') : title}
+        </ToastTitle>
         <DeleteButton type="button" onClick={() => deleteToast(id)}>X</DeleteButton>
       </ToastHeader>
       <ToastContentContainer>
         {types[type as keyof typeof types].img}
-        <ToastDescription>{description}</ToastDescription>
+        <ToastDescription data-testid="toast-description">
+          {description.length > 150 ? description.slice(147).concat('...') : description}
+        </ToastDescription>
       </ToastContentContainer>
     </ToastElementLayout>
   );

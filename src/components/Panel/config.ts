@@ -33,11 +33,11 @@ export const durationSelectorOptions: OptionsType[] = [
   { value: '3000', text: '3 секунды' },
   { value: '5000', text: '5 секунд' },
   { value: '7000', text: '7 секунд' },
-  { value: '10000', text: '10 секунд' },
+  { value: '30000', text: '30 секунд' },
 ];
 
 export const animationSelectorOptions: OptionsType[] = [
   { value: 'opacityAnimation', text: 'Opacity Animation' },
-  { value: 'widthAnimation', text: 'Width Animation' },
   { value: 'heightAnimation', text: 'Height Animation' },
+  { value: 'scaleAnimation', text: 'Scale Animation' },
 ];

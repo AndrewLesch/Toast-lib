@@ -2,14 +2,13 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 
 import useToast from '../../hooks/useToast';
-import { ToastType } from '../../types';
 import ErrorBoundary from '../ErrorBoundary';
 import ToastItem from '../ToastItem';
 
 import ToastLayout from './styled';
 
 const ToastContainer = () => {
-  const toasts = useToast();
+  const { toasts } = useToast();
   const amountToastsInPositions = {
     topLeft: 0,
     topRight: 0,
@@ -20,15 +19,25 @@ const ToastContainer = () => {
   return createPortal(
     <ErrorBoundary>
       <ToastLayout>
-        {toasts.map((toast: ToastType) => {
-          amountToastsInPositions[toast.position as keyof typeof amountToastsInPositions]++;
+        {toasts.map(({
+          id, title, position, type, color, description, duration, animation, margin,
+        }) => {
+          amountToastsInPositions[position as keyof typeof amountToastsInPositions]++;
           return (
             <ToastItem
-              key={toast.id}
-              {...toast}
+              position={position}
+              id={id}
+              animation={animation}
+              duration={duration}
+              margin={margin}
+              key={id}
+              title={title}
+              color={color}
+              type={type}
+              description={description}
               toastsInSamePosition={
                 amountToastsInPositions[
-                  toast.position as keyof typeof amountToastsInPositions
+                  position as keyof typeof amountToastsInPositions
                 ]
               }
             />

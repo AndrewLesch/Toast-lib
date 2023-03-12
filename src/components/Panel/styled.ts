@@ -16,6 +16,7 @@ export const TitleInput = styled.input`
   height: 40px;
   border-radius: 5px;
   border: 2px solid #E4E7EC;
+  padding-left: 10px;
 `;
 
 export const DescriptionInput = styled.textarea`
@@ -23,10 +24,12 @@ export const DescriptionInput = styled.textarea`
   height: 120px;
   max-height: 125px;
   max-width: 470px;
+  min-width: 470px;
   background: #FFFFFF;
   border: 1px solid #E4E7EC;
   border-radius: 8px;
-
+  padding-left: 10px;
+  padding-top: 5px;
 `;
 
 export const ColorSelector = styled.select`
@@ -111,4 +114,8 @@ export const PanelButton = styled.button`
   border: none;
   margin-left: 150px;
   margin-top: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
